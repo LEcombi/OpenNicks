@@ -1,0 +1,12 @@
+name: OpenNicks
+version: '1.0-SNAPSHOT'
+main: de.prime4g.openNicks.OpenNicks
+api-version: '1.21'
+authors: [ LE_code ]
+
+commands:
+  nickname:
+    description: OpenNicks command
+    usage: /nickname <nick>
+    aliases: [nick]
+    permissions: opennicks.nickname
