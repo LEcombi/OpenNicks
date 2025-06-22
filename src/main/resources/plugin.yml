@@ -1,5 +1,5 @@
 name: OpenNicks
-version: '1.1'
+version: '1.2'
 main: de.prime4g.openNicks.OpenNicks
 api-version: '1.21'
 authors: [ LE_code ]

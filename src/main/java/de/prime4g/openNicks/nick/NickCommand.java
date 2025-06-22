@@ -55,6 +55,36 @@ public class NickCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
+
+        // Admin command: /nick set <playername> <nick>
+        if (args.length == 3 && args[0].equalsIgnoreCase("set")) {
+            if (!player.hasPermission("OpenNicks.admin")) {
+                player.sendMessage(ChatColor.RED + "OpenNicks » You do not have permission to use this command.");
+                return true;
+            }
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target == null) {
+                player.sendMessage(ChatColor.YELLOW + "OpenNicks » Player not found.");
+                return true;
+            }
+            String nick = ChatColor.translateAlternateColorCodes('&', args[2]);
+            if (isNickTaken(nick)) {
+                player.sendMessage(ChatColor.YELLOW + "OpenNicks » This nickname is already taken!");
+                return true;
+            }
+            try {
+                setNick(target.getUniqueId(), nick);
+                target.setDisplayName(nick);
+                target.setPlayerListName(nick);
+                player.sendMessage(ChatColor.YELLOW + "OpenNicks » Set nickname for " + target.getName() + " to: " + nick);
+                target.sendMessage(ChatColor.YELLOW + "OpenNicks » Your nickname is now: " + nick);
+            } catch (Exception e) {
+                player.sendMessage(ChatColor.YELLOW + "OpenNicks » Error while setting the nickname.");
+            }
+            return true;
+        }
+
+        // Normal user command
         if (args.length == 0) {
             player.sendMessage(ChatColor.YELLOW + "OpenNicks » Usage: /nick <name|off>");
             return true;
