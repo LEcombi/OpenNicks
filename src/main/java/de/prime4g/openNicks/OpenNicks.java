@@ -36,6 +36,10 @@ public final class OpenNicks extends JavaPlugin {
         getCommand("nickname").setExecutor(new de.prime4g.openNicks.nick.NickCommand());
         getServer().getPluginManager().registerEvents(new de.prime4g.openNicks.nick.NickListener(), this);
 
+        // Register PlaceholderAPI expansion if available
+        if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            new OpenNicksExpansion(this).register();
+        }
         getLogger().info("OpenNicks has been enabled!");
     }
 

@@ -1,8 +1,9 @@
 name: OpenNicks
-version: '1.0-SNAPSHOT'
+version: '1.1'
 main: de.prime4g.openNicks.OpenNicks
 api-version: '1.21'
 authors: [ LE_code ]
+depend: [ 'PlaceholderAPI' ]
 
 commands:
   nickname:
